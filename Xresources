@@ -1,0 +1,15 @@
+!#####################!
+!#URXVT CONFIGURATION#!
+!#####################!
+
+URxvt*scrollBar: false
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+
+!URxvt*font: xft:Inconsolata:size=12:antialias=true
+URxvt*letterSpace: 1
+
+
+!##TERMINAL COLORSCHEME##!
+#include "/home/wiglaf/templates/termColors/sexColors.txt"
+

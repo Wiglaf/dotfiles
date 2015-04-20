@@ -1,0 +1,291 @@
+##---i3 CONFIG (v4)----##
+##---------------------##
+
+
+#----BORDER SETTINGS----#
+new_window pixel 1
+new_float pixel  1
+
+
+#----COLORS----#
+#class                  [border][backgr][text]  [indicator]
+client.focused          #C9B5BD #C9B5BD #825969
+client.focused_inactive #191919 #191919 #999999
+client.unfocused        #191919 #191919 #999999
+client.urgent           #cd989a #cd989a #2e3436
+client.background       #121212
+
+
+#[][][][][][][][][][][]-STARTUP APPLICATIONS-[][][][][][][][][][][][][][][]#
+
+#----BACKGROUND----#
+exec --no-startup-id feh --bg-scale ~/pictures/wallpapers/redBlueHexagonsWP.png
+
+#-------WiFi-------#
+exec --no-startup-id nm-applet
+
+#------BATTERY-----#
+exec --no-startup-id xfce4-power-manager
+
+#----COMPOSITING---#
+exec --no-startup-id compton -b 
+
+#---DISABLE BEEP---#
+#exec --no-startup-id echo xset b off
+
+#---DISABLE TPAD---#
+#exec_always --no-startup-id echo "tpad-off"
+#[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]#
+
+#-----------------------------------i3 BAR------------------------------------#
+bar 
+{
+   mode dock
+   position top
+   font -*-cure-medium-*-*-*-11-*-*-*-*-*-*-*
+   workspace_buttons yes
+   status_command i3status
+   #tray_output primary
+   strip_workspace_numbers yes
+   colors 
+   {
+      #class             [border][backgr][text]
+      background         #101010
+      statusline         #605c5a 
+      separator          #666666
+      focused_workspace  #33A9DB #101010 #33A9DB
+      active_workspace   #287373 #101010 #287373
+      inactive_workspace #8A2F58 #101010 #8A2F58
+      urgent_workspace   #2e3436 #9a878f
+    }
+}
+
+#OLD COLORS
+#nice pink-red #b72f62
+##010101 5f5f5f 33a9db
+
+#------------------------KEYBINDINGS + DEFAULT SETTINGS-----------------------#
+#MOD KEY
+set $mod Mod4
+
+#----START DMENU (a program launcher)----#
+bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run -fn  "-*-terminus-medium-*-*-*-11-*-*-*-*-*-*-*" -nb "#101010" -nf "#99
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+#----KILL FOCUSED WINDOW
+bindsym $mod+q kill
+
+#----OPEN TERMINAL
+bindsym $mod+Return exec i3-sensible-terminal
+
+#----FLOATING MODIFIER
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+
+# FONT FOR WINDOW TITLES
+# Will also be used by the bar unless a different font
+# is used in the bar {} block below. ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, if you need a lot of unicode glyphs or
+# right-to-left text rendering, you should instead use pango for rendering and
+# chose a FreeType font, such as:
+# font pango:DejaVu Sans Mono 10
+
+# CHANGE FOCUS  
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+#MOVE FOCUSED WINDOW
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+#-------------WINDOW SPLITS--------------#
+#HORIZONAL SPLIT (split over) & open term
+bindsym $mod+Shift+o split v 
+#VERTICAL SPLIT  (split each) & open term
+bindsym $mod+Shift+e split h 
+#------------/WINDOW SPLITS/-------------#
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+#bindsym alt+tab focus mode_toggle ((FIGURE THIS OUT!))
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+#-----------------------WORKSPACES-------------------#
+
+#WORKSPACE VARIABLES
+set $WS1 1:term
+set $WS2 2:web
+set $WS3 3:code
+set $WS4 4:media
+set $WS5 5:beyond
+
+##{Creates yet another seperate WS?}
+#SET APPS DEFUALT WORKSPACE
+#assign [class="Firefox"]                      →  $WS2
+#assign [class="Google-chrome"]                →  $WS2
+#assign [class="luakit"]                       →  $WS2
+#assign [class="Opera"]                        →  $WS2
+assign [class="Eclipse"]                        3:code
+#assign [class="^URxvt$" instance="^ncmpcpp$"]  →  $WS4
+#assign [class="MPlayer"]                       →  $WS4
+#assign [class="Vlc"]                          →  $WS4
+#assign [class="FBReader"]                      →  $WS5
+#assign [class="libreoffice-writer"]             5:beyond
+#assign [class="Zathura"]                      →  $WS5
+#assign [class="Gimp"]                         →  $WS5
+#assign [class="Virtualbox"]                   →  $WS5
+
+##[WIP]##
+#set workspace default screens
+#workspace  $WS1 output HDMI2
+workspace  $WS1 output VGA1
+#workspace  $WS2 output HDMI2
+workspace  $WS2 output VGA1
+#workspace  $WS3 output HDMI2
+workspace  $WS3 output VGA1
+
+workspace  $WS4 output LVDS1
+workspace  $WS5 output LVDS1
+workspace  6    output LVDS1
+workspace  7    output LVDS1
+workspace  8    output LVDS1
+workspace  9    output LVDS1
+workspace 10    output LVDS1
+
+
+##[WIP]##
+# CYCLE THRU WORKSPACES
+#bindsym $mod+Control+h pw
+#bindsym $mod+Control+l nw
+
+# switch to workspace
+bindsym $mod+1 workspace 1:term
+bindsym $mod+2 workspace 2:web
+bindsym $mod+3 workspace 3:code
+bindsym $mod+4 workspace 4:media
+bindsym $mod+5 workspace 5:beyond
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+##[DEFAULTS]##
+# RELOAD the configuration file
+bindsym $mod+Shift+c reload
+# RESTART i3 inplace (preserves your layout/session, can be used to upgrade i3)
+#bindsym $mod+Shift+r restart
+# EXIT i3 (logs you out of your X session)
+#bindsym $mod+Shift+z exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+#------EXIT i3 SETTINGS------#
+#Create Logout, Reboot, Poweroff binding
+
+mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (C)Reload, (R)Restart" 
+{
+        bindsym $mod+x exec systemctl reboot
+        bindsym $mod+l exit
+        bindsym $mod+p exec systemctl poweroff
+        bindsym $mod+c reload
+        bindsym $mod+r restart
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+q mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (C)Reload, (R)Restart" 
+
+
+#------RESIZE WINDOW---------#  (you can also use the mouse for this)
+
+mode "resize" 
+{
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+
+#----LEFTOVER DEFAULTS----#
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+#bar {
+#        status_command i3status
+#}
+
+
+
+
