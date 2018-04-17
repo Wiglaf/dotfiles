@@ -15,20 +15,7 @@ alias home='cd ~'
 alias sysmail='cd /var/mail'
 alias configs='vim ~/notes/linux/configsLoc.txt'
 alias debsetup="cd ~/notes/linux && vim debSetup.txt"
-alias shaving="vim ~/notes/personal/shaving.txt"
 alias cooking="vim ~/notes/cooking/ingredients.txt"
-alias quotes="vim ~/notes/personal/lifeQuotes.txt"
-
-#SCHOOL#
-alias campus1="ssh cmoelle@joey2.cs.clemson.edu"
-alias offcampus1="ssh cmoelle@access1.cs.clemson.edu"
-#-------------------------------------------------------------------------#
-alias campus="sshpass -p '@schoolstatus2' ssh cmoelle@joey12.cs.clemson.edu"
-alias offcampus="sshpass -p '@schoolstatus2' ssh cmoelle@access1.cs.clemson.edu"
-#----CLASS NOTES----#
-alias javaa="vim ~/clemson/215/java.txt"
-alias assembly="vim ~/clemson/231/assembly.txt"
-alias comm="vim ~/clemson/comm150/communications150.txt"
 
 #--UTILITIES--#
 alias diff="colordiff"
